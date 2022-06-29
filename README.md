@@ -1,3 +1,3 @@
 # 最近傍法 for Python
 
-```networkx``` must be imported.
+[NetworkX](https://github.com/networkx/networkx) must be imported.
