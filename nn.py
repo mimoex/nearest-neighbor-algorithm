@@ -97,30 +97,32 @@ def tsp_solve(C,timelimit=500):
     return tour
 
 
-C={}
-n=30    #ノード数
-R=10000 #座標の最大値
+if __name__ == "__main__":
+    C={}
+    n=30    #ノード数
+    R=10000 #座標の最大値
 
 
-for i in range(n):
-    x=random.randint(0,R)
-    y=random.randint(0,R)
-    C[i]=(x,y)
+    for i in range(n):
+        x=random.randint(0,R)
+        y=random.randint(0,R)
+        C[i]=(x,y)
+        
+    print(C)
+
+    #最近傍法の処理
+    tour=tsp_solve(C,10)
+
+
+    #結果をグラフに表示
+    Gt=graph_of_tour(tour)
+
+    print("size of tour:",Gt.size(weight="weight"))
+    print("feasibility:",nx.is_k_edge_connected(Gt,2))
+
+
+    plt.figure(figsize=(6,6))
+
+    nx.draw_networkx(Gt,pos=C,node_color="yellow",node_size=200,with_labels=True,edge_color="k",width=1)
+    plt.show()
     
-print(C)
-
-#最近傍法の処理
-tour=tsp_solve(C,10)
-
-
-#結果をグラフに表示
-Gt=graph_of_tour(tour)
-
-print("size of tour:",Gt.size(weight="weight"))
-print("feasibility:",nx.is_k_edge_connected(Gt,2))
-
-
-plt.figure(figsize=(6,6))
-
-nx.draw_networkx(Gt,pos=C,node_color="yellow",node_size=200,with_labels=True,edge_color="k",width=1)
-plt.show()
